@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Bases Numéricas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Conversor de Bases Numéricas</h1>
+
+        <nav>
+            <a href="/">Início</a>
+            <a href="/integrantes">Integrantes</a>
+            <a href="/conversor">Conversor</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="apresentacao">
+            <h2>Bem-vindo ao Conversor de Bases</h2>
+
+            <p>
+                Os sistemas de numeração são fundamentais para a representação
+                e o processamento de informações. Cada sistema utiliza uma base
+                diferente para representar valores numéricos, sendo aplicado
+                em diversas situações do cotidiano e da computação.
+            </p>
+        </section>
+
+        <section class="bases">
+            <h2>Conheça os sistemas de numeração</h2>
+
+            <article>
+                <h3>Sistema Decimal — Base 10</h3>
+                <p>
+                    É o sistema utilizado no dia a dia. Possui dez algarismos,
+                    de 0 a 9, e é usado para representar quantidades, preços,
+                    medidas e outras informações numéricas.
+                </p>
+            </article>
+
+            <article>
+                <h3>Sistema Binário — Base 2</h3>
+                <p>
+                    Utiliza somente os algarismos 0 e 1. É essencial para os
+                    computadores, pois os circuitos digitais trabalham com
+                    dois estados, permitindo representar e processar dados.
+                </p>
+            </article>
+
+            <article>
+                <h3>Sistema Hexadecimal — Base 16</h3>
+                <p>
+                    Utiliza os algarismos de 0 a 9 e as letras de A a F.
+                    É bastante utilizado na computação para representar
+                    endereços de memória, códigos de cores e valores binários
+                    de maneira mais compacta.
+                </p>
+            </article>
+
+            <article>
+                <h3>Sistema Octal — Base 8</h3>
+                <p>
+                    Utiliza os algarismos de 0 a 7. Pode simplificar a
+                    representação de números binários e é utilizado, por
+                    exemplo, na definição de permissões de arquivos em sistemas
+                    operacionais Unix e Linux.
+                </p>
+            </article>
+        </section>
+
+        <section class="importancia">
+            <h2>Por que converter entre bases?</h2>
+
+            <p>
+                A conversão entre bases numéricas permite representar o mesmo
+                valor em diferentes sistemas. Isso facilita o entendimento
+                do funcionamento dos computadores, a interpretação de dados
+                e o estudo de conceitos importantes da área de Redes de
+                Computadores.
+            </p>
+
+            <a href="/conversor" class="botao">Acessar o conversor</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Redes de Computadores</p>
+    </footer>
+
+</body>
+</html>
