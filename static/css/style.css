@@ -1,0 +1,99 @@
+/* Grade das quatro tabelas */
+.grade-tabelas {
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+/* Estilo geral das tabelas */
+.grade-tabelas table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.grade-tabelas th {
+    padding: 16px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.grade-tabelas td {
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    overflow-wrap: anywhere;
+}
+
+.grade-tabelas input {
+    width: 63%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.grade-tabelas button {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Decimal: azul */
+.tabela-decimal th,
+.tabela-decimal button {
+    background-color: #2471a3;
+}
+
+.tabela-decimal td:first-child {
+    background-color: #eaf4fb;
+}
+
+/* Binário: verde */
+.tabela-binaria th,
+.tabela-binaria button {
+    background-color: #218c74;
+}
+
+.tabela-binaria td:first-child {
+    background-color: #e5f6f0;
+}
+
+/* Hexadecimal: roxo */
+.tabela-hexadecimal th,
+.tabela-hexadecimal button {
+    background-color: #7952a3;
+}
+
+.tabela-hexadecimal td:first-child {
+    background-color: #f1eafa;
+}
+
+/* Octal: laranja */
+.tabela-octal th,
+.tabela-octal button {
+    background-color: #d97706;
+}
+
+.tabela-octal td:first-child {
+    background-color: #fff2df;
+}
+
+/* Celulares: uma tabela por linha */
+@media (max-width: 700px) {
+    .grade-tabelas {
+        width: 95%;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
