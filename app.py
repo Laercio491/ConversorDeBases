@@ -1,7 +1,35 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
+
+
+def decimal_para_base(numero, base):
+    digitos = "0123456789ABCDEF"
+
+    if numero == 0:
+        return "0"
+
+    resultado = ""
+
+    while numero > 0:
+        resto = numero % base
+        resultado = digitos[resto] + resultado
+        numero //= base
+
+    return resultado
+
+
+def base_para_decimal(numero, base):
+    digitos = "0123456789ABCDEF"
+    numero = numero.upper()
+    resultado = 0
+
+    for caractere in numero:
+        valor = digitos.index(caractere)
+        resultado = resultado * base + valor
+
+    return resultado
 
 
 @app.route("/")
@@ -14,9 +42,70 @@ def integrantes():
     return render_template("integrantes.html")
 
 
-@app.route("/conversor")
+@app.route("/conversor", methods=["GET", "POST"])
 def conversor():
-    return render_template("conversor.html")
+    decimal = ""
+    binario = ""
+
+    decimal_binario = ""
+    decimal_hexadecimal = ""
+    decimal_octal = ""
+
+    binario_decimal = ""
+    binario_hexadecimal = ""
+    binario_octal = ""
+
+    erro_decimal = ""
+    erro_binario = ""
+
+    if request.method == "POST":
+        tipo = request.form.get("tipo")
+
+        if tipo == "decimal":
+            decimal = request.form.get("decimal", "").strip()
+
+            try:
+                if not decimal or not decimal.isdigit():
+                    raise ValueError
+
+                numero = int(decimal)
+
+                decimal_binario = decimal_para_base(numero, 2)
+                decimal_hexadecimal = decimal_para_base(numero, 16)
+                decimal_octal = decimal_para_base(numero, 8)
+
+            except ValueError:
+                erro_decimal = "Digite um número decimal inteiro válido."
+
+        elif tipo == "binario":
+            binario = request.form.get("binario", "").strip()
+
+            try:
+                if not binario or any(digito not in "01" for digito in binario):
+                    raise ValueError
+
+                numero = base_para_decimal(binario, 2)
+
+                binario_decimal = str(numero)
+                binario_hexadecimal = decimal_para_base(numero, 16)
+                binario_octal = decimal_para_base(numero, 8)
+
+            except ValueError:
+                erro_binario = "Digite somente 0 e 1."
+
+    return render_template(
+        "conversor.html",
+        decimal=decimal,
+        binario=binario,
+        decimal_binario=decimal_binario,
+        decimal_hexadecimal=decimal_hexadecimal,
+        decimal_octal=decimal_octal,
+        binario_decimal=binario_decimal,
+        binario_hexadecimal=binario_hexadecimal,
+        binario_octal=binario_octal,
+        erro_decimal=erro_decimal,
+        erro_binario=erro_binario
+    )
 
 
 if __name__ == "__main__":
