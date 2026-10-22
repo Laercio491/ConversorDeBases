@@ -65,7 +65,7 @@
             </table>
 
 
-            <br>
+            
 
 
             <table class="tabela-binaria">
@@ -110,7 +110,7 @@
             </table>
 
 
-            <br>
+            
 
             <table class="tabela-hexadecimal">
                 <thead>
@@ -121,12 +121,13 @@
                 <tbody>
                     <tr>
                         <td><label for="hexadecimal">Campo de entrada</label></td>
-                         <form method="POST" action="{{ url_for('conversor') }}"></form>
+                         <form method="POST" action="{{ url_for('conversor') }}">
                          <input type="hidden" name="tipo" value="hexadecimal">
                         <td><input type="text" id="hexadecimal" name="hexadecimal" value="{{ hexadecimal }}" placeholder="Digite um valor hexadecimal" required >
                         
                         <button type="submit">Converter</button>
                         </td>
+                        </form>
                     </tr>
                     <tr>
                         <td>Resultado em decimal</td>
@@ -148,7 +149,7 @@
                 </tbody>
             </table>
 
-            <br>
+            
 
             <table class="tabela-octal">
                 <thead>
@@ -158,21 +159,36 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Campo de entrada</td>
-                        <td><input type="text" id="octal" placeholder="Digite um valor octal"></td>
+                        <td>
+                            <label for="octal">Campo de entrada</label>
+                        </td>
+                        <form method="POST" action="{{ url_for('conversor') }}">
+                            <input type="hidden" name="tipo" value="octal">
+                           <td><input type="text" id="octal" name="octal" value="{{ octal }}"
+                            placeholder="Digite somente um valor octal válido" required>
+
+                            <button type="submit">Converter</button>
+
+                    </td>
+                    </form>
                     </tr>
                     <tr>
                         <td>Resultado em decimal</td>
-                        <td>—</td>
+                        <td>{{ octal_decimal or "-" }}</td>
                     </tr>
                     <tr>
                         <td>Resultado em binário</td>
-                        <td>—</td>
+                        <td>{{ octal_binario or "-"}}</td>
                     </tr>
                     <tr>
                         <td>Resultado em hexadecimal</td>
-                        <td>—</td>
+                        <td>{{ octal_hexadecimal or "-"}}</td>
                     </tr>
+                    {% if erro_octal %}
+                    <tr>
+                        <td colspan="2">{{ erro_octal }}</td>
+                    </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
