@@ -1,6 +1,66 @@
+body{
+    font-family:Arial, verdana, tahoma, Verdana, sans-serif;
+    font-size: 18px;
+    margin: 0;
+}
+
+.rodape{
+    clear: both;
+    background-color: #2471a3;
+    height: 110px;
+    padding: 25px 100px;
+    color: #cbd5e1;
+    font-family:Arial, verdana, tahoma, Verdana, sans-serif;
+}
+
+.navbar{
+    background-color: #2471a3;
+}
+
+.navbar a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px 11px;
+}
+
+.tabint{
+    width: 90%;
+    max-width: 1100px;
+    margin: 35px auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+/* Estilo geral das tabelas */
+.tabint table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.tabint th {
+    padding: 16px;
+    color: #170303;
+    font-size: 18px;
+}
+
+.tabint td {
+    padding: 12px;
+    border: 1px solid #100101;
+    overflow-wrap: anywhere;
+}
+
+
+
 /* Grade das quatro tabelas */
 .grade-tabelas {
-    width: 90%;
+    width: 100%;
     max-width: 1100px;
     margin: 35px auto;
     display: grid;
@@ -32,7 +92,7 @@
 }
 
 .grade-tabelas input {
-    width: 63%;
+    width: 100%;
     min-width: 0;
     padding: 10px;
     border: 1px solid #cbd5e1;

@@ -13,7 +13,7 @@
     <header>
         <h1>Conversor de Bases Numéricas</h1>
 
-        <nav>
+        <nav class="navbar">
             <a href="{{ url_for('inicio') }}">Início</a>
             <a href="{{ url_for('integrantes') }}">Integrantes</a>
             <a href="{{ url_for('conversor') }}">Conversor</a>
@@ -65,6 +65,9 @@
             </table>
 
 
+            
+
+
             <table class="tabela-binaria">
                 <thead>
                     <tr>
@@ -106,6 +109,9 @@
                 </tbody>
             </table>
 
+
+            
+
             <table class="tabela-hexadecimal">
                 <thead>
                     <tr>
@@ -114,23 +120,36 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Campo de entrada</td>
-                        <td><input type="text" id="hexadecimal" placeholder="Digite um valor hexadecimal"></td>
+                        <td><label for="hexadecimal">Campo de entrada</label></td>
+                         <form method="POST" action="{{ url_for('conversor') }}">
+                         <input type="hidden" name="tipo" value="hexadecimal">
+                        <td><input type="text" id="hexadecimal" name="hexadecimal" value="{{ hexadecimal }}" placeholder="Digite um valor hexadecimal" required >
+                        
+                        <button type="submit">Converter</button>
+                        </td>
+                        </form>
                     </tr>
                     <tr>
                         <td>Resultado em decimal</td>
-                        <td>—</td>
+                        <td>{{ hexadecimal_decimal or "-" }}</td>
                     </tr>
                     <tr>
                         <td>Resultado em binário</td>
-                        <td>—</td>
+                        <td>{{ hexadecimal_binario or "-" }}</td>
                     </tr>
                     <tr>
                         <td>Resultado em octal</td>
-                        <td>—</td>
+                        <td>{{ hexadecimal_octal or "-" }}</td>
+                   </tr>
+                    {% if erro_hexadecimal %}
+                    <tr>
+                        <td colspan="2">{{ erro_hexadecimal }}</td>
                     </tr>
+                    {% endif %}
                 </tbody>
             </table>
+
+            
 
             <table class="tabela-octal">
                 <thead>
@@ -140,21 +159,36 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Campo de entrada</td>
-                        <td><input type="text" id="octal" placeholder="Digite um valor octal"></td>
+                        <td>
+                            <label for="octal">Campo de entrada</label>
+                        </td>
+                        <form method="POST" action="{{ url_for('conversor') }}">
+                            <input type="hidden" name="tipo" value="octal">
+                           <td><input type="text" id="octal" name="octal" value="{{ octal }}"
+                            placeholder="Digite somente um valor octal válido" required>
+
+                            <button type="submit">Converter</button>
+
+                    </td>
+                    </form>
                     </tr>
                     <tr>
                         <td>Resultado em decimal</td>
-                        <td>—</td>
+                        <td>{{ octal_decimal or "-" }}</td>
                     </tr>
                     <tr>
                         <td>Resultado em binário</td>
-                        <td>—</td>
+                        <td>{{ octal_binario or "-"}}</td>
                     </tr>
                     <tr>
                         <td>Resultado em hexadecimal</td>
-                        <td>—</td>
+                        <td>{{ octal_hexadecimal or "-"}}</td>
                     </tr>
+                    {% if erro_octal %}
+                    <tr>
+                        <td colspan="2">{{ erro_octal }}</td>
+                    </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>

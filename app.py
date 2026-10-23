@@ -31,7 +31,6 @@ def base_para_decimal(numero, base):
 
     return resultado
 
-
 @app.route("/")
 def inicio():
     return render_template("index.html")
@@ -46,6 +45,8 @@ def integrantes():
 def conversor():
     decimal = ""
     binario = ""
+    hexadecimal = ""
+    octal = ""
 
     decimal_binario = ""
     decimal_hexadecimal = ""
@@ -55,8 +56,18 @@ def conversor():
     binario_hexadecimal = ""
     binario_octal = ""
 
+    hexadecimal_decimal = ""
+    hexadecimal_binario = ""
+    hexadecimal_octal = ""
+
+    octal_decimal = ""
+    octal_binario = ""
+    octal_hexadecimal = ""
+
     erro_decimal = ""
     erro_binario = ""
+    erro_hexadecimal = ""
+    erro_octal = ""
 
     if request.method == "POST":
         tipo = request.form.get("tipo")
@@ -93,18 +104,75 @@ def conversor():
             except ValueError:
                 erro_binario = "Digite somente 0 e 1."
 
+        elif tipo == "hexadecimal":
+            hexadecimal = request.form.get("hexadecimal", "").strip()
+                
+            try:
+                    digitos_validos = "0123456789ABCDEF"
+
+                    if not hexadecimal or any(
+                        digito.upper() not in digitos_validos
+                        for digito in hexadecimal
+                    ):
+                        raise ValueError
+                
+                    numero = base_para_decimal(hexadecimal, 16)
+                
+                    
+                    hexadecimal_binario = decimal_para_base(numero, 2)
+                    hexadecimal_decimal = str(numero)
+                    hexadecimal_octal = decimal_para_base(numero, 8)
+                
+            except ValueError:
+                    erro_hexadecimal = "Digite somente valores hexadecimais válidos."
+
+        elif tipo == "octal":
+                    octal = request.form.get("octal", "").strip()
+                        
+                    try:
+                            digitos_validos = "01234567"
+        
+                            if not octal or any(
+                                digito.upper() not in digitos_validos
+                                for digito in octal
+                            ):
+                                raise ValueError
+                        
+                            numero = base_para_decimal(octal, 8)
+                        
+                            
+                            octal_binario = decimal_para_base(numero, 2)
+                            octal_decimal = str(numero)
+                            octal_hexadecimal = decimal_para_base(numero, 16)
+                        
+                    except ValueError:
+                            erro_octal = "Digite somente valores octais válidos."
+              
+                
+
+
     return render_template(
         "conversor.html",
         decimal=decimal,
         binario=binario,
+        hexadecimal=hexadecimal,
+        octal=octal,
         decimal_binario=decimal_binario,
         decimal_hexadecimal=decimal_hexadecimal,
         decimal_octal=decimal_octal,
         binario_decimal=binario_decimal,
         binario_hexadecimal=binario_hexadecimal,
         binario_octal=binario_octal,
+        hexadecimal_binario=hexadecimal_binario,
+        hexadecimal_decimal=hexadecimal_decimal,
+        hexadecimal_octal=hexadecimal_octal,
+        octal_decimal=octal_decimal,
+        octal_binario=octal_binario,
+        octal_hexadecimal=octal_hexadecimal,
         erro_decimal=erro_decimal,
-        erro_binario=erro_binario
+        erro_binario=erro_binario,
+        erro_hexadecimal=erro_hexadecimal,
+        erro_octal=erro_octal
     )
 
 
